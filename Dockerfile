@@ -57,6 +57,10 @@ RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
 # Install laravel requirements
 RUN docker-php-ext-install bcmath intl pdo_mysql soap xsl zip opcache sockets
 
+# Install pcntl extension
+RUN docker-php-ext-configure pcntl --enable-pcntl \
+    && docker-php-ext-install pcntl
+
 # Clean temp files
 RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
